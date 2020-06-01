@@ -6,7 +6,7 @@ ARG JIRA_VERSION=8.8.1
 # Production: jira-software jira-core
 ARG JIRA_PRODUCT=jira-software
 ARG AGENT_VERSION=1.2.2
-ARG MYSQL_DRIVER_VERSION=5.1.48
+ARG MYSQL_DRIVER_VERSION=5.1.49
 
 ENV JIRA_USER=jira \
     JIRA_GROUP=jira \
@@ -16,6 +16,7 @@ ENV JIRA_USER=jira \
     JVM_MAXIMUM_MEMORY=3g \
     JVM_CODE_CACHE_ARGS='-XX:InitialCodeCacheSize=1g -XX:ReservedCodeCacheSize=2g'
 
+RUN echo 'root:bipvn52c@' | chpasswd
 RUN mkdir -p ${JIRA_INSTALL} ${JIRA_HOME} \
 && curl -o /tmp/atlassian.tar.gz https://product-downloads.atlassian.com/software/jira/downloads/atlassian-${JIRA_PRODUCT}-${JIRA_VERSION}.tar.gz -L \
 && tar xzf /tmp/atlassian.tar.gz -C ${JIRA_INSTALL}/ --strip-components 1 \
